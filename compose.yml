@@ -1,0 +1,9 @@
+services:
+  rust:
+    build:
+      context: .
+      dockerfile: .docker/rust/Dockerfile
+    container_name: adv-rust
+    volumes:
+        - "./:/usr/src/myapp/"
+
