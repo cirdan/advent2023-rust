@@ -13,19 +13,13 @@ pub fn day2() {
 }
 
 pub fn sum_possible_games_ids(lines: Lines) -> u32 {
-    let mut total = 0;
-    for line in lines {
-        total += RGBGame::from_string(line).score(RGBCubeSet { red: 12, green: 13, blue: 14 });
-    }
-    total
+    lines.map(|line| {
+        RGBGame::from_string(line).score(RGBCubeSet { red: 12, green: 13, blue: 14 })
+    }).sum()
 }
 
 pub fn sum_games_powers(lines: Lines) -> u32 {
-    let mut total = 0;
-    for line in lines {
-        total += RGBGame::from_string(line).smallest_possible_bag().power();
-    }
-    total
+    lines.map(|line| RGBGame::from_string(line).smallest_possible_bag().power()).sum()
 }
 
 #[derive(PartialEq, Debug, Clone)]
@@ -111,6 +105,7 @@ impl Draw for RGBCubeSet {
         let mut red = 0;
         let mut green = 0;
         let mut blue = 0;
+        //TODO: functionalize
         for cube_def in draw_string.trim().split(',') {
             let mut split = cube_def.trim().split(" ");
             let count = split.next().unwrap().parse::<u32>().unwrap();

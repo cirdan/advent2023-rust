@@ -13,11 +13,7 @@ pub fn day1() {
 }
 
 pub fn sum_calibrations(lines:Lines, replace_spelled: bool) -> i32 {
-    let mut calibration_total = 0;
-    for line in lines {
-        calibration_total += calibration_value(line, replace_spelled);
-    }
-    calibration_total
+    lines.map(|line| calibration_value(line, replace_spelled)).sum()
 }
 
 
